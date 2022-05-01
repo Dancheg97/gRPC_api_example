@@ -18,39 +18,39 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// GatewayClient is the client API for Gateway service.
+// TestServerClient is the client API for TestServer service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type GatewayClient interface {
+type TestServerClient interface {
 	Unary(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Message, error)
-	StreamOut(ctx context.Context, in *Message, opts ...grpc.CallOption) (Gateway_StreamOutClient, error)
-	StreamIn(ctx context.Context, opts ...grpc.CallOption) (Gateway_StreamInClient, error)
-	StreamInOut(ctx context.Context, opts ...grpc.CallOption) (Gateway_StreamInOutClient, error)
+	StreamOut(ctx context.Context, in *Message, opts ...grpc.CallOption) (TestServer_StreamOutClient, error)
+	StreamIn(ctx context.Context, opts ...grpc.CallOption) (TestServer_StreamInClient, error)
+	StreamInOut(ctx context.Context, opts ...grpc.CallOption) (TestServer_StreamInOutClient, error)
 }
 
-type gatewayClient struct {
+type testServerClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewGatewayClient(cc grpc.ClientConnInterface) GatewayClient {
-	return &gatewayClient{cc}
+func NewTestServerClient(cc grpc.ClientConnInterface) TestServerClient {
+	return &testServerClient{cc}
 }
 
-func (c *gatewayClient) Unary(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Message, error) {
+func (c *testServerClient) Unary(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Message, error) {
 	out := new(Message)
-	err := c.cc.Invoke(ctx, "/pb.Gateway/Unary", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.TestServer/Unary", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *gatewayClient) StreamOut(ctx context.Context, in *Message, opts ...grpc.CallOption) (Gateway_StreamOutClient, error) {
-	stream, err := c.cc.NewStream(ctx, &Gateway_ServiceDesc.Streams[0], "/pb.Gateway/StreamOut", opts...)
+func (c *testServerClient) StreamOut(ctx context.Context, in *Message, opts ...grpc.CallOption) (TestServer_StreamOutClient, error) {
+	stream, err := c.cc.NewStream(ctx, &TestServer_ServiceDesc.Streams[0], "/pb.TestServer/StreamOut", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &gatewayStreamOutClient{stream}
+	x := &testServerStreamOutClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -60,16 +60,16 @@ func (c *gatewayClient) StreamOut(ctx context.Context, in *Message, opts ...grpc
 	return x, nil
 }
 
-type Gateway_StreamOutClient interface {
+type TestServer_StreamOutClient interface {
 	Recv() (*Message, error)
 	grpc.ClientStream
 }
 
-type gatewayStreamOutClient struct {
+type testServerStreamOutClient struct {
 	grpc.ClientStream
 }
 
-func (x *gatewayStreamOutClient) Recv() (*Message, error) {
+func (x *testServerStreamOutClient) Recv() (*Message, error) {
 	m := new(Message)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -77,30 +77,30 @@ func (x *gatewayStreamOutClient) Recv() (*Message, error) {
 	return m, nil
 }
 
-func (c *gatewayClient) StreamIn(ctx context.Context, opts ...grpc.CallOption) (Gateway_StreamInClient, error) {
-	stream, err := c.cc.NewStream(ctx, &Gateway_ServiceDesc.Streams[1], "/pb.Gateway/StreamIn", opts...)
+func (c *testServerClient) StreamIn(ctx context.Context, opts ...grpc.CallOption) (TestServer_StreamInClient, error) {
+	stream, err := c.cc.NewStream(ctx, &TestServer_ServiceDesc.Streams[1], "/pb.TestServer/StreamIn", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &gatewayStreamInClient{stream}
+	x := &testServerStreamInClient{stream}
 	return x, nil
 }
 
-type Gateway_StreamInClient interface {
+type TestServer_StreamInClient interface {
 	Send(*Message) error
 	CloseAndRecv() (*Message, error)
 	grpc.ClientStream
 }
 
-type gatewayStreamInClient struct {
+type testServerStreamInClient struct {
 	grpc.ClientStream
 }
 
-func (x *gatewayStreamInClient) Send(m *Message) error {
+func (x *testServerStreamInClient) Send(m *Message) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *gatewayStreamInClient) CloseAndRecv() (*Message, error) {
+func (x *testServerStreamInClient) CloseAndRecv() (*Message, error) {
 	if err := x.ClientStream.CloseSend(); err != nil {
 		return nil, err
 	}
@@ -111,30 +111,30 @@ func (x *gatewayStreamInClient) CloseAndRecv() (*Message, error) {
 	return m, nil
 }
 
-func (c *gatewayClient) StreamInOut(ctx context.Context, opts ...grpc.CallOption) (Gateway_StreamInOutClient, error) {
-	stream, err := c.cc.NewStream(ctx, &Gateway_ServiceDesc.Streams[2], "/pb.Gateway/StreamInOut", opts...)
+func (c *testServerClient) StreamInOut(ctx context.Context, opts ...grpc.CallOption) (TestServer_StreamInOutClient, error) {
+	stream, err := c.cc.NewStream(ctx, &TestServer_ServiceDesc.Streams[2], "/pb.TestServer/StreamInOut", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &gatewayStreamInOutClient{stream}
+	x := &testServerStreamInOutClient{stream}
 	return x, nil
 }
 
-type Gateway_StreamInOutClient interface {
+type TestServer_StreamInOutClient interface {
 	Send(*Message) error
 	Recv() (*Message, error)
 	grpc.ClientStream
 }
 
-type gatewayStreamInOutClient struct {
+type testServerStreamInOutClient struct {
 	grpc.ClientStream
 }
 
-func (x *gatewayStreamInOutClient) Send(m *Message) error {
+func (x *testServerStreamInOutClient) Send(m *Message) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *gatewayStreamInOutClient) Recv() (*Message, error) {
+func (x *testServerStreamInOutClient) Recv() (*Message, error) {
 	m := new(Message)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -142,104 +142,104 @@ func (x *gatewayStreamInOutClient) Recv() (*Message, error) {
 	return m, nil
 }
 
-// GatewayServer is the server API for Gateway service.
-// All implementations must embed UnimplementedGatewayServer
+// TestServerServer is the server API for TestServer service.
+// All implementations must embed UnimplementedTestServerServer
 // for forward compatibility
-type GatewayServer interface {
+type TestServerServer interface {
 	Unary(context.Context, *Message) (*Message, error)
-	StreamOut(*Message, Gateway_StreamOutServer) error
-	StreamIn(Gateway_StreamInServer) error
-	StreamInOut(Gateway_StreamInOutServer) error
-	mustEmbedUnimplementedGatewayServer()
+	StreamOut(*Message, TestServer_StreamOutServer) error
+	StreamIn(TestServer_StreamInServer) error
+	StreamInOut(TestServer_StreamInOutServer) error
+	mustEmbedUnimplementedTestServerServer()
 }
 
-// UnimplementedGatewayServer must be embedded to have forward compatible implementations.
-type UnimplementedGatewayServer struct {
+// UnimplementedTestServerServer must be embedded to have forward compatible implementations.
+type UnimplementedTestServerServer struct {
 }
 
-func (UnimplementedGatewayServer) Unary(context.Context, *Message) (*Message, error) {
+func (UnimplementedTestServerServer) Unary(context.Context, *Message) (*Message, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unary not implemented")
 }
-func (UnimplementedGatewayServer) StreamOut(*Message, Gateway_StreamOutServer) error {
+func (UnimplementedTestServerServer) StreamOut(*Message, TestServer_StreamOutServer) error {
 	return status.Errorf(codes.Unimplemented, "method StreamOut not implemented")
 }
-func (UnimplementedGatewayServer) StreamIn(Gateway_StreamInServer) error {
+func (UnimplementedTestServerServer) StreamIn(TestServer_StreamInServer) error {
 	return status.Errorf(codes.Unimplemented, "method StreamIn not implemented")
 }
-func (UnimplementedGatewayServer) StreamInOut(Gateway_StreamInOutServer) error {
+func (UnimplementedTestServerServer) StreamInOut(TestServer_StreamInOutServer) error {
 	return status.Errorf(codes.Unimplemented, "method StreamInOut not implemented")
 }
-func (UnimplementedGatewayServer) mustEmbedUnimplementedGatewayServer() {}
+func (UnimplementedTestServerServer) mustEmbedUnimplementedTestServerServer() {}
 
-// UnsafeGatewayServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to GatewayServer will
+// UnsafeTestServerServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to TestServerServer will
 // result in compilation errors.
-type UnsafeGatewayServer interface {
-	mustEmbedUnimplementedGatewayServer()
+type UnsafeTestServerServer interface {
+	mustEmbedUnimplementedTestServerServer()
 }
 
-func RegisterGatewayServer(s grpc.ServiceRegistrar, srv GatewayServer) {
-	s.RegisterService(&Gateway_ServiceDesc, srv)
+func RegisterTestServerServer(s grpc.ServiceRegistrar, srv TestServerServer) {
+	s.RegisterService(&TestServer_ServiceDesc, srv)
 }
 
-func _Gateway_Unary_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TestServer_Unary_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Message)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GatewayServer).Unary(ctx, in)
+		return srv.(TestServerServer).Unary(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.Gateway/Unary",
+		FullMethod: "/pb.TestServer/Unary",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GatewayServer).Unary(ctx, req.(*Message))
+		return srv.(TestServerServer).Unary(ctx, req.(*Message))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Gateway_StreamOut_Handler(srv interface{}, stream grpc.ServerStream) error {
+func _TestServer_StreamOut_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(Message)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(GatewayServer).StreamOut(m, &gatewayStreamOutServer{stream})
+	return srv.(TestServerServer).StreamOut(m, &testServerStreamOutServer{stream})
 }
 
-type Gateway_StreamOutServer interface {
+type TestServer_StreamOutServer interface {
 	Send(*Message) error
 	grpc.ServerStream
 }
 
-type gatewayStreamOutServer struct {
+type testServerStreamOutServer struct {
 	grpc.ServerStream
 }
 
-func (x *gatewayStreamOutServer) Send(m *Message) error {
+func (x *testServerStreamOutServer) Send(m *Message) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _Gateway_StreamIn_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(GatewayServer).StreamIn(&gatewayStreamInServer{stream})
+func _TestServer_StreamIn_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(TestServerServer).StreamIn(&testServerStreamInServer{stream})
 }
 
-type Gateway_StreamInServer interface {
+type TestServer_StreamInServer interface {
 	SendAndClose(*Message) error
 	Recv() (*Message, error)
 	grpc.ServerStream
 }
 
-type gatewayStreamInServer struct {
+type testServerStreamInServer struct {
 	grpc.ServerStream
 }
 
-func (x *gatewayStreamInServer) SendAndClose(m *Message) error {
+func (x *testServerStreamInServer) SendAndClose(m *Message) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func (x *gatewayStreamInServer) Recv() (*Message, error) {
+func (x *testServerStreamInServer) Recv() (*Message, error) {
 	m := new(Message)
 	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -247,25 +247,25 @@ func (x *gatewayStreamInServer) Recv() (*Message, error) {
 	return m, nil
 }
 
-func _Gateway_StreamInOut_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(GatewayServer).StreamInOut(&gatewayStreamInOutServer{stream})
+func _TestServer_StreamInOut_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(TestServerServer).StreamInOut(&testServerStreamInOutServer{stream})
 }
 
-type Gateway_StreamInOutServer interface {
+type TestServer_StreamInOutServer interface {
 	Send(*Message) error
 	Recv() (*Message, error)
 	grpc.ServerStream
 }
 
-type gatewayStreamInOutServer struct {
+type testServerStreamInOutServer struct {
 	grpc.ServerStream
 }
 
-func (x *gatewayStreamInOutServer) Send(m *Message) error {
+func (x *testServerStreamInOutServer) Send(m *Message) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func (x *gatewayStreamInOutServer) Recv() (*Message, error) {
+func (x *testServerStreamInOutServer) Recv() (*Message, error) {
 	m := new(Message)
 	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -273,32 +273,32 @@ func (x *gatewayStreamInOutServer) Recv() (*Message, error) {
 	return m, nil
 }
 
-// Gateway_ServiceDesc is the grpc.ServiceDesc for Gateway service.
+// TestServer_ServiceDesc is the grpc.ServiceDesc for TestServer service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Gateway_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "pb.Gateway",
-	HandlerType: (*GatewayServer)(nil),
+var TestServer_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "pb.TestServer",
+	HandlerType: (*TestServerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Unary",
-			Handler:    _Gateway_Unary_Handler,
+			Handler:    _TestServer_Unary_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "StreamOut",
-			Handler:       _Gateway_StreamOut_Handler,
+			Handler:       _TestServer_StreamOut_Handler,
 			ServerStreams: true,
 		},
 		{
 			StreamName:    "StreamIn",
-			Handler:       _Gateway_StreamIn_Handler,
+			Handler:       _TestServer_StreamIn_Handler,
 			ClientStreams: true,
 		},
 		{
 			StreamName:    "StreamInOut",
-			Handler:       _Gateway_StreamInOut_Handler,
+			Handler:       _TestServer_StreamInOut_Handler,
 			ServerStreams: true,
 			ClientStreams: true,
 		},

@@ -2,7 +2,7 @@ syntax = "proto3";
 package pb;
 option go_package = "/pb";
 
-service Gateway {
+service TestServer {
   rpc Unary(Message) returns (Message);
   rpc StreamOut(Message) returns (stream Message);
   rpc StreamIn(stream Message) returns (Message);
