@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"io"
 	"log"
 	"net"
 	"time"
@@ -47,4 +48,24 @@ func (s *server) StreamOut(in *pb.Message, stream pb.TestServer_StreamOutServer)
 		time.Sleep(time.Second)
 	}
 	return nil
+}
+
+func (s *server) StreamIn(stream pb.TestServer_StreamInServer) error {
+	count := 0
+	for {
+		mes, err := stream.Recv()
+		if err == io.EOF {
+			stream.SendAndClose(&pb.Message{
+				Id:      int32(count),
+				Message: `i recieved all your stream sweetie`,
+				Content: []byte{1, 2, 3},
+			})
+		}
+		if err != nil {
+			fmt.Println(err)
+			return nil
+		}
+		count += 1
+		fmt.Println(count, mes)
+	}
 }
