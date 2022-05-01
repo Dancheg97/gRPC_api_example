@@ -1,3 +1,6 @@
 # gRPC_api_example
 
-Example of gRPC api for testing gRPC-Rocket testing tool
+Extract following command examples:
+
+- Get description of services `grpcurl -proto api.proto describe`
+- Get description of message `grpcurl -proto api.proto describe pb.Message`
