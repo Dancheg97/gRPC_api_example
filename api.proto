@@ -1,0 +1,16 @@
+syntax = "proto3";
+package pb;
+option go_package = "/pb";
+
+service Gateway {
+  rpc Unary(Message) returns (Message);
+  rpc StreamOut(Message) returns (stream Message);
+  rpc StreamIn(stream Message) returns (Message);
+  rpc StreamInOut(stream Message) returns (stream Message);
+}
+
+message Message {
+  int32 id = 1;
+  string message = 2;
+  bytes content = 3;
+}
