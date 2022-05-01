@@ -6,7 +6,6 @@ import "google/protobuf/empty.proto";
 
 
 service Basics {
-  // basic types
   rpc DoubleCall(DoubleMes) returns (DoubleMes);
   rpc FloatCall(FloatMes) returns (FloatMes);
   rpc Int32Call(Int32Mes) returns (Int32Mes);
@@ -36,9 +35,9 @@ service Constructions {
 }
 
 service Streams {
-  rpc StreamOut(StringMes) returns (stream StringMes);
-  rpc StreamIn(stream StringMes) returns (StringMes);
-  rpc StreamInOut(stream StringMes) returns (stream StringMes);
+  rpc ServerStream(StringMes) returns (stream StringMes);
+  rpc ClientStream(stream StringMes) returns (StringMes);
+  rpc BiDirectioalStream(stream StringMes) returns (stream StringMes);
 }
 
 message DoubleMes{

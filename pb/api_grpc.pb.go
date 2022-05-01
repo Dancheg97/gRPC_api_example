@@ -11,6 +11,8 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	anypb "google.golang.org/protobuf/types/known/anypb"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -18,40 +20,957 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// TestServerClient is the client API for TestServer service.
+// BasicsClient is the client API for Basics service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type TestServerClient interface {
-	Unary(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Message, error)
-	StreamOut(ctx context.Context, in *Message, opts ...grpc.CallOption) (TestServer_StreamOutClient, error)
-	StreamIn(ctx context.Context, opts ...grpc.CallOption) (TestServer_StreamInClient, error)
-	// rpc StreamInOut(stream Message) returns (stream Message);
-	UnaryFolded(ctx context.Context, in *Folded, opts ...grpc.CallOption) (*Folded, error)
+type BasicsClient interface {
+	DoubleCall(ctx context.Context, in *DoubleMes, opts ...grpc.CallOption) (*DoubleMes, error)
+	FloatCall(ctx context.Context, in *FloatMes, opts ...grpc.CallOption) (*FloatMes, error)
+	Int32Call(ctx context.Context, in *Int32Mes, opts ...grpc.CallOption) (*Int32Mes, error)
+	Int64Call(ctx context.Context, in *Int64Mes, opts ...grpc.CallOption) (*Int64Mes, error)
+	Uint32Call(ctx context.Context, in *Uint32Mes, opts ...grpc.CallOption) (*Uint32Mes, error)
+	Uint64Call(ctx context.Context, in *Uint64Mes, opts ...grpc.CallOption) (*Uint64Mes, error)
+	Sint32Call(ctx context.Context, in *Sint32Mes, opts ...grpc.CallOption) (*Sint32Mes, error)
+	Sint64Call(ctx context.Context, in *Sint64Mes, opts ...grpc.CallOption) (*Sint64Mes, error)
+	Fixed32Call(ctx context.Context, in *Fixed32Mes, opts ...grpc.CallOption) (*Fixed32Mes, error)
+	Fixed64Call(ctx context.Context, in *Fixed64Mes, opts ...grpc.CallOption) (*Fixed64Mes, error)
+	Sfixed32Call(ctx context.Context, in *Sfixed32Mes, opts ...grpc.CallOption) (*Sfixed32Mes, error)
+	Sfixed64Call(ctx context.Context, in *Sfixed64Mes, opts ...grpc.CallOption) (*Sfixed64Mes, error)
+	BoolCall(ctx context.Context, in *BoolMes, opts ...grpc.CallOption) (*BoolMes, error)
+	StringCall(ctx context.Context, in *StringMes, opts ...grpc.CallOption) (*StringMes, error)
+	BytesCall(ctx context.Context, in *BytesMes, opts ...grpc.CallOption) (*BytesMes, error)
 }
 
-type testServerClient struct {
+type basicsClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewTestServerClient(cc grpc.ClientConnInterface) TestServerClient {
-	return &testServerClient{cc}
+func NewBasicsClient(cc grpc.ClientConnInterface) BasicsClient {
+	return &basicsClient{cc}
 }
 
-func (c *testServerClient) Unary(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Message, error) {
-	out := new(Message)
-	err := c.cc.Invoke(ctx, "/pb.TestServer/Unary", in, out, opts...)
+func (c *basicsClient) DoubleCall(ctx context.Context, in *DoubleMes, opts ...grpc.CallOption) (*DoubleMes, error) {
+	out := new(DoubleMes)
+	err := c.cc.Invoke(ctx, "/pb.Basics/DoubleCall", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *testServerClient) StreamOut(ctx context.Context, in *Message, opts ...grpc.CallOption) (TestServer_StreamOutClient, error) {
-	stream, err := c.cc.NewStream(ctx, &TestServer_ServiceDesc.Streams[0], "/pb.TestServer/StreamOut", opts...)
+func (c *basicsClient) FloatCall(ctx context.Context, in *FloatMes, opts ...grpc.CallOption) (*FloatMes, error) {
+	out := new(FloatMes)
+	err := c.cc.Invoke(ctx, "/pb.Basics/FloatCall", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &testServerStreamOutClient{stream}
+	return out, nil
+}
+
+func (c *basicsClient) Int32Call(ctx context.Context, in *Int32Mes, opts ...grpc.CallOption) (*Int32Mes, error) {
+	out := new(Int32Mes)
+	err := c.cc.Invoke(ctx, "/pb.Basics/Int32Call", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *basicsClient) Int64Call(ctx context.Context, in *Int64Mes, opts ...grpc.CallOption) (*Int64Mes, error) {
+	out := new(Int64Mes)
+	err := c.cc.Invoke(ctx, "/pb.Basics/Int64Call", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *basicsClient) Uint32Call(ctx context.Context, in *Uint32Mes, opts ...grpc.CallOption) (*Uint32Mes, error) {
+	out := new(Uint32Mes)
+	err := c.cc.Invoke(ctx, "/pb.Basics/Uint32Call", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *basicsClient) Uint64Call(ctx context.Context, in *Uint64Mes, opts ...grpc.CallOption) (*Uint64Mes, error) {
+	out := new(Uint64Mes)
+	err := c.cc.Invoke(ctx, "/pb.Basics/Uint64Call", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *basicsClient) Sint32Call(ctx context.Context, in *Sint32Mes, opts ...grpc.CallOption) (*Sint32Mes, error) {
+	out := new(Sint32Mes)
+	err := c.cc.Invoke(ctx, "/pb.Basics/Sint32Call", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *basicsClient) Sint64Call(ctx context.Context, in *Sint64Mes, opts ...grpc.CallOption) (*Sint64Mes, error) {
+	out := new(Sint64Mes)
+	err := c.cc.Invoke(ctx, "/pb.Basics/Sint64Call", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *basicsClient) Fixed32Call(ctx context.Context, in *Fixed32Mes, opts ...grpc.CallOption) (*Fixed32Mes, error) {
+	out := new(Fixed32Mes)
+	err := c.cc.Invoke(ctx, "/pb.Basics/Fixed32Call", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *basicsClient) Fixed64Call(ctx context.Context, in *Fixed64Mes, opts ...grpc.CallOption) (*Fixed64Mes, error) {
+	out := new(Fixed64Mes)
+	err := c.cc.Invoke(ctx, "/pb.Basics/Fixed64Call", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *basicsClient) Sfixed32Call(ctx context.Context, in *Sfixed32Mes, opts ...grpc.CallOption) (*Sfixed32Mes, error) {
+	out := new(Sfixed32Mes)
+	err := c.cc.Invoke(ctx, "/pb.Basics/Sfixed32Call", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *basicsClient) Sfixed64Call(ctx context.Context, in *Sfixed64Mes, opts ...grpc.CallOption) (*Sfixed64Mes, error) {
+	out := new(Sfixed64Mes)
+	err := c.cc.Invoke(ctx, "/pb.Basics/Sfixed64Call", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *basicsClient) BoolCall(ctx context.Context, in *BoolMes, opts ...grpc.CallOption) (*BoolMes, error) {
+	out := new(BoolMes)
+	err := c.cc.Invoke(ctx, "/pb.Basics/BoolCall", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *basicsClient) StringCall(ctx context.Context, in *StringMes, opts ...grpc.CallOption) (*StringMes, error) {
+	out := new(StringMes)
+	err := c.cc.Invoke(ctx, "/pb.Basics/StringCall", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *basicsClient) BytesCall(ctx context.Context, in *BytesMes, opts ...grpc.CallOption) (*BytesMes, error) {
+	out := new(BytesMes)
+	err := c.cc.Invoke(ctx, "/pb.Basics/BytesCall", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// BasicsServer is the server API for Basics service.
+// All implementations must embed UnimplementedBasicsServer
+// for forward compatibility
+type BasicsServer interface {
+	DoubleCall(context.Context, *DoubleMes) (*DoubleMes, error)
+	FloatCall(context.Context, *FloatMes) (*FloatMes, error)
+	Int32Call(context.Context, *Int32Mes) (*Int32Mes, error)
+	Int64Call(context.Context, *Int64Mes) (*Int64Mes, error)
+	Uint32Call(context.Context, *Uint32Mes) (*Uint32Mes, error)
+	Uint64Call(context.Context, *Uint64Mes) (*Uint64Mes, error)
+	Sint32Call(context.Context, *Sint32Mes) (*Sint32Mes, error)
+	Sint64Call(context.Context, *Sint64Mes) (*Sint64Mes, error)
+	Fixed32Call(context.Context, *Fixed32Mes) (*Fixed32Mes, error)
+	Fixed64Call(context.Context, *Fixed64Mes) (*Fixed64Mes, error)
+	Sfixed32Call(context.Context, *Sfixed32Mes) (*Sfixed32Mes, error)
+	Sfixed64Call(context.Context, *Sfixed64Mes) (*Sfixed64Mes, error)
+	BoolCall(context.Context, *BoolMes) (*BoolMes, error)
+	StringCall(context.Context, *StringMes) (*StringMes, error)
+	BytesCall(context.Context, *BytesMes) (*BytesMes, error)
+	mustEmbedUnimplementedBasicsServer()
+}
+
+// UnimplementedBasicsServer must be embedded to have forward compatible implementations.
+type UnimplementedBasicsServer struct {
+}
+
+func (UnimplementedBasicsServer) DoubleCall(context.Context, *DoubleMes) (*DoubleMes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DoubleCall not implemented")
+}
+func (UnimplementedBasicsServer) FloatCall(context.Context, *FloatMes) (*FloatMes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FloatCall not implemented")
+}
+func (UnimplementedBasicsServer) Int32Call(context.Context, *Int32Mes) (*Int32Mes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Int32Call not implemented")
+}
+func (UnimplementedBasicsServer) Int64Call(context.Context, *Int64Mes) (*Int64Mes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Int64Call not implemented")
+}
+func (UnimplementedBasicsServer) Uint32Call(context.Context, *Uint32Mes) (*Uint32Mes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Uint32Call not implemented")
+}
+func (UnimplementedBasicsServer) Uint64Call(context.Context, *Uint64Mes) (*Uint64Mes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Uint64Call not implemented")
+}
+func (UnimplementedBasicsServer) Sint32Call(context.Context, *Sint32Mes) (*Sint32Mes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Sint32Call not implemented")
+}
+func (UnimplementedBasicsServer) Sint64Call(context.Context, *Sint64Mes) (*Sint64Mes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Sint64Call not implemented")
+}
+func (UnimplementedBasicsServer) Fixed32Call(context.Context, *Fixed32Mes) (*Fixed32Mes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Fixed32Call not implemented")
+}
+func (UnimplementedBasicsServer) Fixed64Call(context.Context, *Fixed64Mes) (*Fixed64Mes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Fixed64Call not implemented")
+}
+func (UnimplementedBasicsServer) Sfixed32Call(context.Context, *Sfixed32Mes) (*Sfixed32Mes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Sfixed32Call not implemented")
+}
+func (UnimplementedBasicsServer) Sfixed64Call(context.Context, *Sfixed64Mes) (*Sfixed64Mes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Sfixed64Call not implemented")
+}
+func (UnimplementedBasicsServer) BoolCall(context.Context, *BoolMes) (*BoolMes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BoolCall not implemented")
+}
+func (UnimplementedBasicsServer) StringCall(context.Context, *StringMes) (*StringMes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StringCall not implemented")
+}
+func (UnimplementedBasicsServer) BytesCall(context.Context, *BytesMes) (*BytesMes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BytesCall not implemented")
+}
+func (UnimplementedBasicsServer) mustEmbedUnimplementedBasicsServer() {}
+
+// UnsafeBasicsServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to BasicsServer will
+// result in compilation errors.
+type UnsafeBasicsServer interface {
+	mustEmbedUnimplementedBasicsServer()
+}
+
+func RegisterBasicsServer(s grpc.ServiceRegistrar, srv BasicsServer) {
+	s.RegisterService(&Basics_ServiceDesc, srv)
+}
+
+func _Basics_DoubleCall_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DoubleMes)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BasicsServer).DoubleCall(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.Basics/DoubleCall",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BasicsServer).DoubleCall(ctx, req.(*DoubleMes))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Basics_FloatCall_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FloatMes)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BasicsServer).FloatCall(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.Basics/FloatCall",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BasicsServer).FloatCall(ctx, req.(*FloatMes))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Basics_Int32Call_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Int32Mes)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BasicsServer).Int32Call(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.Basics/Int32Call",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BasicsServer).Int32Call(ctx, req.(*Int32Mes))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Basics_Int64Call_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Int64Mes)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BasicsServer).Int64Call(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.Basics/Int64Call",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BasicsServer).Int64Call(ctx, req.(*Int64Mes))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Basics_Uint32Call_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Uint32Mes)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BasicsServer).Uint32Call(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.Basics/Uint32Call",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BasicsServer).Uint32Call(ctx, req.(*Uint32Mes))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Basics_Uint64Call_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Uint64Mes)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BasicsServer).Uint64Call(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.Basics/Uint64Call",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BasicsServer).Uint64Call(ctx, req.(*Uint64Mes))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Basics_Sint32Call_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Sint32Mes)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BasicsServer).Sint32Call(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.Basics/Sint32Call",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BasicsServer).Sint32Call(ctx, req.(*Sint32Mes))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Basics_Sint64Call_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Sint64Mes)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BasicsServer).Sint64Call(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.Basics/Sint64Call",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BasicsServer).Sint64Call(ctx, req.(*Sint64Mes))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Basics_Fixed32Call_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Fixed32Mes)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BasicsServer).Fixed32Call(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.Basics/Fixed32Call",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BasicsServer).Fixed32Call(ctx, req.(*Fixed32Mes))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Basics_Fixed64Call_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Fixed64Mes)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BasicsServer).Fixed64Call(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.Basics/Fixed64Call",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BasicsServer).Fixed64Call(ctx, req.(*Fixed64Mes))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Basics_Sfixed32Call_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Sfixed32Mes)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BasicsServer).Sfixed32Call(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.Basics/Sfixed32Call",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BasicsServer).Sfixed32Call(ctx, req.(*Sfixed32Mes))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Basics_Sfixed64Call_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Sfixed64Mes)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BasicsServer).Sfixed64Call(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.Basics/Sfixed64Call",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BasicsServer).Sfixed64Call(ctx, req.(*Sfixed64Mes))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Basics_BoolCall_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BoolMes)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BasicsServer).BoolCall(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.Basics/BoolCall",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BasicsServer).BoolCall(ctx, req.(*BoolMes))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Basics_StringCall_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StringMes)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BasicsServer).StringCall(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.Basics/StringCall",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BasicsServer).StringCall(ctx, req.(*StringMes))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Basics_BytesCall_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BytesMes)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BasicsServer).BytesCall(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.Basics/BytesCall",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BasicsServer).BytesCall(ctx, req.(*BytesMes))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Basics_ServiceDesc is the grpc.ServiceDesc for Basics service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Basics_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "pb.Basics",
+	HandlerType: (*BasicsServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "DoubleCall",
+			Handler:    _Basics_DoubleCall_Handler,
+		},
+		{
+			MethodName: "FloatCall",
+			Handler:    _Basics_FloatCall_Handler,
+		},
+		{
+			MethodName: "Int32Call",
+			Handler:    _Basics_Int32Call_Handler,
+		},
+		{
+			MethodName: "Int64Call",
+			Handler:    _Basics_Int64Call_Handler,
+		},
+		{
+			MethodName: "Uint32Call",
+			Handler:    _Basics_Uint32Call_Handler,
+		},
+		{
+			MethodName: "Uint64Call",
+			Handler:    _Basics_Uint64Call_Handler,
+		},
+		{
+			MethodName: "Sint32Call",
+			Handler:    _Basics_Sint32Call_Handler,
+		},
+		{
+			MethodName: "Sint64Call",
+			Handler:    _Basics_Sint64Call_Handler,
+		},
+		{
+			MethodName: "Fixed32Call",
+			Handler:    _Basics_Fixed32Call_Handler,
+		},
+		{
+			MethodName: "Fixed64Call",
+			Handler:    _Basics_Fixed64Call_Handler,
+		},
+		{
+			MethodName: "Sfixed32Call",
+			Handler:    _Basics_Sfixed32Call_Handler,
+		},
+		{
+			MethodName: "Sfixed64Call",
+			Handler:    _Basics_Sfixed64Call_Handler,
+		},
+		{
+			MethodName: "BoolCall",
+			Handler:    _Basics_BoolCall_Handler,
+		},
+		{
+			MethodName: "StringCall",
+			Handler:    _Basics_StringCall_Handler,
+		},
+		{
+			MethodName: "BytesCall",
+			Handler:    _Basics_BytesCall_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "api.proto",
+}
+
+// ConstructionsClient is the client API for Constructions service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type ConstructionsClient interface {
+	EnumCall(ctx context.Context, in *EnumMes, opts ...grpc.CallOption) (*EnumMes, error)
+	AnyCall(ctx context.Context, in *anypb.Any, opts ...grpc.CallOption) (*anypb.Any, error)
+	EmptyCall(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ListCall(ctx context.Context, in *ListMes, opts ...grpc.CallOption) (*ListMes, error)
+	MapCall(ctx context.Context, in *MapMes, opts ...grpc.CallOption) (*MapMes, error)
+	OneofCall(ctx context.Context, in *OneofMes, opts ...grpc.CallOption) (*OneofMes, error)
+	OptionalCall(ctx context.Context, in *OptionalMes, opts ...grpc.CallOption) (*OptionalMes, error)
+	NestedCall(ctx context.Context, in *NestedMes, opts ...grpc.CallOption) (*NestedMes, error)
+}
+
+type constructionsClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewConstructionsClient(cc grpc.ClientConnInterface) ConstructionsClient {
+	return &constructionsClient{cc}
+}
+
+func (c *constructionsClient) EnumCall(ctx context.Context, in *EnumMes, opts ...grpc.CallOption) (*EnumMes, error) {
+	out := new(EnumMes)
+	err := c.cc.Invoke(ctx, "/pb.Constructions/EnumCall", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *constructionsClient) AnyCall(ctx context.Context, in *anypb.Any, opts ...grpc.CallOption) (*anypb.Any, error) {
+	out := new(anypb.Any)
+	err := c.cc.Invoke(ctx, "/pb.Constructions/AnyCall", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *constructionsClient) EmptyCall(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, "/pb.Constructions/EmptyCall", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *constructionsClient) ListCall(ctx context.Context, in *ListMes, opts ...grpc.CallOption) (*ListMes, error) {
+	out := new(ListMes)
+	err := c.cc.Invoke(ctx, "/pb.Constructions/ListCall", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *constructionsClient) MapCall(ctx context.Context, in *MapMes, opts ...grpc.CallOption) (*MapMes, error) {
+	out := new(MapMes)
+	err := c.cc.Invoke(ctx, "/pb.Constructions/MapCall", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *constructionsClient) OneofCall(ctx context.Context, in *OneofMes, opts ...grpc.CallOption) (*OneofMes, error) {
+	out := new(OneofMes)
+	err := c.cc.Invoke(ctx, "/pb.Constructions/OneofCall", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *constructionsClient) OptionalCall(ctx context.Context, in *OptionalMes, opts ...grpc.CallOption) (*OptionalMes, error) {
+	out := new(OptionalMes)
+	err := c.cc.Invoke(ctx, "/pb.Constructions/OptionalCall", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *constructionsClient) NestedCall(ctx context.Context, in *NestedMes, opts ...grpc.CallOption) (*NestedMes, error) {
+	out := new(NestedMes)
+	err := c.cc.Invoke(ctx, "/pb.Constructions/NestedCall", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// ConstructionsServer is the server API for Constructions service.
+// All implementations must embed UnimplementedConstructionsServer
+// for forward compatibility
+type ConstructionsServer interface {
+	EnumCall(context.Context, *EnumMes) (*EnumMes, error)
+	AnyCall(context.Context, *anypb.Any) (*anypb.Any, error)
+	EmptyCall(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
+	ListCall(context.Context, *ListMes) (*ListMes, error)
+	MapCall(context.Context, *MapMes) (*MapMes, error)
+	OneofCall(context.Context, *OneofMes) (*OneofMes, error)
+	OptionalCall(context.Context, *OptionalMes) (*OptionalMes, error)
+	NestedCall(context.Context, *NestedMes) (*NestedMes, error)
+	mustEmbedUnimplementedConstructionsServer()
+}
+
+// UnimplementedConstructionsServer must be embedded to have forward compatible implementations.
+type UnimplementedConstructionsServer struct {
+}
+
+func (UnimplementedConstructionsServer) EnumCall(context.Context, *EnumMes) (*EnumMes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EnumCall not implemented")
+}
+func (UnimplementedConstructionsServer) AnyCall(context.Context, *anypb.Any) (*anypb.Any, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AnyCall not implemented")
+}
+func (UnimplementedConstructionsServer) EmptyCall(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EmptyCall not implemented")
+}
+func (UnimplementedConstructionsServer) ListCall(context.Context, *ListMes) (*ListMes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListCall not implemented")
+}
+func (UnimplementedConstructionsServer) MapCall(context.Context, *MapMes) (*MapMes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MapCall not implemented")
+}
+func (UnimplementedConstructionsServer) OneofCall(context.Context, *OneofMes) (*OneofMes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OneofCall not implemented")
+}
+func (UnimplementedConstructionsServer) OptionalCall(context.Context, *OptionalMes) (*OptionalMes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method OptionalCall not implemented")
+}
+func (UnimplementedConstructionsServer) NestedCall(context.Context, *NestedMes) (*NestedMes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method NestedCall not implemented")
+}
+func (UnimplementedConstructionsServer) mustEmbedUnimplementedConstructionsServer() {}
+
+// UnsafeConstructionsServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ConstructionsServer will
+// result in compilation errors.
+type UnsafeConstructionsServer interface {
+	mustEmbedUnimplementedConstructionsServer()
+}
+
+func RegisterConstructionsServer(s grpc.ServiceRegistrar, srv ConstructionsServer) {
+	s.RegisterService(&Constructions_ServiceDesc, srv)
+}
+
+func _Constructions_EnumCall_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EnumMes)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConstructionsServer).EnumCall(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.Constructions/EnumCall",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConstructionsServer).EnumCall(ctx, req.(*EnumMes))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Constructions_AnyCall_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(anypb.Any)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConstructionsServer).AnyCall(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.Constructions/AnyCall",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConstructionsServer).AnyCall(ctx, req.(*anypb.Any))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Constructions_EmptyCall_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConstructionsServer).EmptyCall(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.Constructions/EmptyCall",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConstructionsServer).EmptyCall(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Constructions_ListCall_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListMes)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConstructionsServer).ListCall(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.Constructions/ListCall",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConstructionsServer).ListCall(ctx, req.(*ListMes))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Constructions_MapCall_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MapMes)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConstructionsServer).MapCall(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.Constructions/MapCall",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConstructionsServer).MapCall(ctx, req.(*MapMes))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Constructions_OneofCall_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OneofMes)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConstructionsServer).OneofCall(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.Constructions/OneofCall",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConstructionsServer).OneofCall(ctx, req.(*OneofMes))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Constructions_OptionalCall_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OptionalMes)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConstructionsServer).OptionalCall(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.Constructions/OptionalCall",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConstructionsServer).OptionalCall(ctx, req.(*OptionalMes))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Constructions_NestedCall_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NestedMes)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ConstructionsServer).NestedCall(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.Constructions/NestedCall",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ConstructionsServer).NestedCall(ctx, req.(*NestedMes))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Constructions_ServiceDesc is the grpc.ServiceDesc for Constructions service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Constructions_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "pb.Constructions",
+	HandlerType: (*ConstructionsServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "EnumCall",
+			Handler:    _Constructions_EnumCall_Handler,
+		},
+		{
+			MethodName: "AnyCall",
+			Handler:    _Constructions_AnyCall_Handler,
+		},
+		{
+			MethodName: "EmptyCall",
+			Handler:    _Constructions_EmptyCall_Handler,
+		},
+		{
+			MethodName: "ListCall",
+			Handler:    _Constructions_ListCall_Handler,
+		},
+		{
+			MethodName: "MapCall",
+			Handler:    _Constructions_MapCall_Handler,
+		},
+		{
+			MethodName: "OneofCall",
+			Handler:    _Constructions_OneofCall_Handler,
+		},
+		{
+			MethodName: "OptionalCall",
+			Handler:    _Constructions_OptionalCall_Handler,
+		},
+		{
+			MethodName: "NestedCall",
+			Handler:    _Constructions_NestedCall_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "api.proto",
+}
+
+// StreamsClient is the client API for Streams service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type StreamsClient interface {
+	ServerStream(ctx context.Context, in *StringMes, opts ...grpc.CallOption) (Streams_ServerStreamClient, error)
+	ClientStream(ctx context.Context, opts ...grpc.CallOption) (Streams_ClientStreamClient, error)
+	BiDirectioalStream(ctx context.Context, opts ...grpc.CallOption) (Streams_BiDirectioalStreamClient, error)
+}
+
+type streamsClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewStreamsClient(cc grpc.ClientConnInterface) StreamsClient {
+	return &streamsClient{cc}
+}
+
+func (c *streamsClient) ServerStream(ctx context.Context, in *StringMes, opts ...grpc.CallOption) (Streams_ServerStreamClient, error) {
+	stream, err := c.cc.NewStream(ctx, &Streams_ServiceDesc.Streams[0], "/pb.Streams/ServerStream", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &streamsServerStreamClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -61,215 +980,219 @@ func (c *testServerClient) StreamOut(ctx context.Context, in *Message, opts ...g
 	return x, nil
 }
 
-type TestServer_StreamOutClient interface {
-	Recv() (*Message, error)
+type Streams_ServerStreamClient interface {
+	Recv() (*StringMes, error)
 	grpc.ClientStream
 }
 
-type testServerStreamOutClient struct {
+type streamsServerStreamClient struct {
 	grpc.ClientStream
 }
 
-func (x *testServerStreamOutClient) Recv() (*Message, error) {
-	m := new(Message)
+func (x *streamsServerStreamClient) Recv() (*StringMes, error) {
+	m := new(StringMes)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
 	return m, nil
 }
 
-func (c *testServerClient) StreamIn(ctx context.Context, opts ...grpc.CallOption) (TestServer_StreamInClient, error) {
-	stream, err := c.cc.NewStream(ctx, &TestServer_ServiceDesc.Streams[1], "/pb.TestServer/StreamIn", opts...)
+func (c *streamsClient) ClientStream(ctx context.Context, opts ...grpc.CallOption) (Streams_ClientStreamClient, error) {
+	stream, err := c.cc.NewStream(ctx, &Streams_ServiceDesc.Streams[1], "/pb.Streams/ClientStream", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &testServerStreamInClient{stream}
+	x := &streamsClientStreamClient{stream}
 	return x, nil
 }
 
-type TestServer_StreamInClient interface {
-	Send(*Message) error
-	CloseAndRecv() (*Message, error)
+type Streams_ClientStreamClient interface {
+	Send(*StringMes) error
+	CloseAndRecv() (*StringMes, error)
 	grpc.ClientStream
 }
 
-type testServerStreamInClient struct {
+type streamsClientStreamClient struct {
 	grpc.ClientStream
 }
 
-func (x *testServerStreamInClient) Send(m *Message) error {
+func (x *streamsClientStreamClient) Send(m *StringMes) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *testServerStreamInClient) CloseAndRecv() (*Message, error) {
+func (x *streamsClientStreamClient) CloseAndRecv() (*StringMes, error) {
 	if err := x.ClientStream.CloseSend(); err != nil {
 		return nil, err
 	}
-	m := new(Message)
+	m := new(StringMes)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
 	return m, nil
 }
 
-func (c *testServerClient) UnaryFolded(ctx context.Context, in *Folded, opts ...grpc.CallOption) (*Folded, error) {
-	out := new(Folded)
-	err := c.cc.Invoke(ctx, "/pb.TestServer/UnaryFolded", in, out, opts...)
+func (c *streamsClient) BiDirectioalStream(ctx context.Context, opts ...grpc.CallOption) (Streams_BiDirectioalStreamClient, error) {
+	stream, err := c.cc.NewStream(ctx, &Streams_ServiceDesc.Streams[2], "/pb.Streams/BiDirectioalStream", opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	x := &streamsBiDirectioalStreamClient{stream}
+	return x, nil
 }
 
-// TestServerServer is the server API for TestServer service.
-// All implementations must embed UnimplementedTestServerServer
-// for forward compatibility
-type TestServerServer interface {
-	Unary(context.Context, *Message) (*Message, error)
-	StreamOut(*Message, TestServer_StreamOutServer) error
-	StreamIn(TestServer_StreamInServer) error
-	// rpc StreamInOut(stream Message) returns (stream Message);
-	UnaryFolded(context.Context, *Folded) (*Folded, error)
-	mustEmbedUnimplementedTestServerServer()
+type Streams_BiDirectioalStreamClient interface {
+	Send(*StringMes) error
+	Recv() (*StringMes, error)
+	grpc.ClientStream
 }
 
-// UnimplementedTestServerServer must be embedded to have forward compatible implementations.
-type UnimplementedTestServerServer struct {
+type streamsBiDirectioalStreamClient struct {
+	grpc.ClientStream
 }
 
-func (UnimplementedTestServerServer) Unary(context.Context, *Message) (*Message, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Unary not implemented")
-}
-func (UnimplementedTestServerServer) StreamOut(*Message, TestServer_StreamOutServer) error {
-	return status.Errorf(codes.Unimplemented, "method StreamOut not implemented")
-}
-func (UnimplementedTestServerServer) StreamIn(TestServer_StreamInServer) error {
-	return status.Errorf(codes.Unimplemented, "method StreamIn not implemented")
-}
-func (UnimplementedTestServerServer) UnaryFolded(context.Context, *Folded) (*Folded, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UnaryFolded not implemented")
-}
-func (UnimplementedTestServerServer) mustEmbedUnimplementedTestServerServer() {}
-
-// UnsafeTestServerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to TestServerServer will
-// result in compilation errors.
-type UnsafeTestServerServer interface {
-	mustEmbedUnimplementedTestServerServer()
+func (x *streamsBiDirectioalStreamClient) Send(m *StringMes) error {
+	return x.ClientStream.SendMsg(m)
 }
 
-func RegisterTestServerServer(s grpc.ServiceRegistrar, srv TestServerServer) {
-	s.RegisterService(&TestServer_ServiceDesc, srv)
-}
-
-func _TestServer_Unary_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Message)
-	if err := dec(in); err != nil {
+func (x *streamsBiDirectioalStreamClient) Recv() (*StringMes, error) {
+	m := new(StringMes)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
-	if interceptor == nil {
-		return srv.(TestServerServer).Unary(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pb.TestServer/Unary",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TestServerServer).Unary(ctx, req.(*Message))
-	}
-	return interceptor(ctx, in, info, handler)
+	return m, nil
 }
 
-func _TestServer_StreamOut_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(Message)
+// StreamsServer is the server API for Streams service.
+// All implementations must embed UnimplementedStreamsServer
+// for forward compatibility
+type StreamsServer interface {
+	ServerStream(*StringMes, Streams_ServerStreamServer) error
+	ClientStream(Streams_ClientStreamServer) error
+	BiDirectioalStream(Streams_BiDirectioalStreamServer) error
+	mustEmbedUnimplementedStreamsServer()
+}
+
+// UnimplementedStreamsServer must be embedded to have forward compatible implementations.
+type UnimplementedStreamsServer struct {
+}
+
+func (UnimplementedStreamsServer) ServerStream(*StringMes, Streams_ServerStreamServer) error {
+	return status.Errorf(codes.Unimplemented, "method ServerStream not implemented")
+}
+func (UnimplementedStreamsServer) ClientStream(Streams_ClientStreamServer) error {
+	return status.Errorf(codes.Unimplemented, "method ClientStream not implemented")
+}
+func (UnimplementedStreamsServer) BiDirectioalStream(Streams_BiDirectioalStreamServer) error {
+	return status.Errorf(codes.Unimplemented, "method BiDirectioalStream not implemented")
+}
+func (UnimplementedStreamsServer) mustEmbedUnimplementedStreamsServer() {}
+
+// UnsafeStreamsServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to StreamsServer will
+// result in compilation errors.
+type UnsafeStreamsServer interface {
+	mustEmbedUnimplementedStreamsServer()
+}
+
+func RegisterStreamsServer(s grpc.ServiceRegistrar, srv StreamsServer) {
+	s.RegisterService(&Streams_ServiceDesc, srv)
+}
+
+func _Streams_ServerStream_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(StringMes)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(TestServerServer).StreamOut(m, &testServerStreamOutServer{stream})
+	return srv.(StreamsServer).ServerStream(m, &streamsServerStreamServer{stream})
 }
 
-type TestServer_StreamOutServer interface {
-	Send(*Message) error
+type Streams_ServerStreamServer interface {
+	Send(*StringMes) error
 	grpc.ServerStream
 }
 
-type testServerStreamOutServer struct {
+type streamsServerStreamServer struct {
 	grpc.ServerStream
 }
 
-func (x *testServerStreamOutServer) Send(m *Message) error {
+func (x *streamsServerStreamServer) Send(m *StringMes) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _TestServer_StreamIn_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(TestServerServer).StreamIn(&testServerStreamInServer{stream})
+func _Streams_ClientStream_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(StreamsServer).ClientStream(&streamsClientStreamServer{stream})
 }
 
-type TestServer_StreamInServer interface {
-	SendAndClose(*Message) error
-	Recv() (*Message, error)
+type Streams_ClientStreamServer interface {
+	SendAndClose(*StringMes) error
+	Recv() (*StringMes, error)
 	grpc.ServerStream
 }
 
-type testServerStreamInServer struct {
+type streamsClientStreamServer struct {
 	grpc.ServerStream
 }
 
-func (x *testServerStreamInServer) SendAndClose(m *Message) error {
+func (x *streamsClientStreamServer) SendAndClose(m *StringMes) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func (x *testServerStreamInServer) Recv() (*Message, error) {
-	m := new(Message)
+func (x *streamsClientStreamServer) Recv() (*StringMes, error) {
+	m := new(StringMes)
 	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
 	return m, nil
 }
 
-func _TestServer_UnaryFolded_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Folded)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TestServerServer).UnaryFolded(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pb.TestServer/UnaryFolded",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TestServerServer).UnaryFolded(ctx, req.(*Folded))
-	}
-	return interceptor(ctx, in, info, handler)
+func _Streams_BiDirectioalStream_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(StreamsServer).BiDirectioalStream(&streamsBiDirectioalStreamServer{stream})
 }
 
-// TestServer_ServiceDesc is the grpc.ServiceDesc for TestServer service.
+type Streams_BiDirectioalStreamServer interface {
+	Send(*StringMes) error
+	Recv() (*StringMes, error)
+	grpc.ServerStream
+}
+
+type streamsBiDirectioalStreamServer struct {
+	grpc.ServerStream
+}
+
+func (x *streamsBiDirectioalStreamServer) Send(m *StringMes) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *streamsBiDirectioalStreamServer) Recv() (*StringMes, error) {
+	m := new(StringMes)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+// Streams_ServiceDesc is the grpc.ServiceDesc for Streams service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var TestServer_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "pb.TestServer",
-	HandlerType: (*TestServerServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "Unary",
-			Handler:    _TestServer_Unary_Handler,
-		},
-		{
-			MethodName: "UnaryFolded",
-			Handler:    _TestServer_UnaryFolded_Handler,
-		},
-	},
+var Streams_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "pb.Streams",
+	HandlerType: (*StreamsServer)(nil),
+	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "StreamOut",
-			Handler:       _TestServer_StreamOut_Handler,
+			StreamName:    "ServerStream",
+			Handler:       _Streams_ServerStream_Handler,
 			ServerStreams: true,
 		},
 		{
-			StreamName:    "StreamIn",
-			Handler:       _TestServer_StreamIn_Handler,
+			StreamName:    "ClientStream",
+			Handler:       _Streams_ClientStream_Handler,
+			ClientStreams: true,
+		},
+		{
+			StreamName:    "BiDirectioalStream",
+			Handler:       _Streams_BiDirectioalStream_Handler,
+			ServerStreams: true,
 			ClientStreams: true,
 		},
 	},
