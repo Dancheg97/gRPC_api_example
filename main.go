@@ -35,11 +35,9 @@ func (s *server) Unary(ctx context.Context, in *pb.Message) (*pb.Message, error)
 
 func (s *server) StreamOut(in *pb.Message, stream pb.TestServer_StreamOutServer) error {
 	fmt.Println(in)
-	for _, i := range []int32{1, 2, 3, 4, 5, 6, 7, 8, 9} {
+	for i := range []int32{1, 2, 3, 4, 5, 6, 7, 8, 9} {
 		err := stream.Send(&pb.Message{
-			Id:      i,
-			Message: `hello there`,
-			Content: []byte{1, 2, 3, 4, 5},
+			Message: fmt.Sprintln(`hello there`, i),
 		})
 		if err != nil {
 			fmt.Println(err)
@@ -56,9 +54,7 @@ func (s *server) StreamIn(stream pb.TestServer_StreamInServer) error {
 		mes, err := stream.Recv()
 		if err == io.EOF {
 			stream.SendAndClose(&pb.Message{
-				Id:      int32(count),
 				Message: `i recieved all your stream sweetie`,
-				Content: []byte{1, 2, 3},
 			})
 		}
 		if err != nil {

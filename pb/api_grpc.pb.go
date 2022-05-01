@@ -25,6 +25,8 @@ type TestServerClient interface {
 	Unary(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Message, error)
 	StreamOut(ctx context.Context, in *Message, opts ...grpc.CallOption) (TestServer_StreamOutClient, error)
 	StreamIn(ctx context.Context, opts ...grpc.CallOption) (TestServer_StreamInClient, error)
+	// rpc StreamInOut(stream Message) returns (stream Message);
+	UnaryFolded(ctx context.Context, in *Folded, opts ...grpc.CallOption) (*Folded, error)
 }
 
 type testServerClient struct {
@@ -110,6 +112,15 @@ func (x *testServerStreamInClient) CloseAndRecv() (*Message, error) {
 	return m, nil
 }
 
+func (c *testServerClient) UnaryFolded(ctx context.Context, in *Folded, opts ...grpc.CallOption) (*Folded, error) {
+	out := new(Folded)
+	err := c.cc.Invoke(ctx, "/pb.TestServer/UnaryFolded", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TestServerServer is the server API for TestServer service.
 // All implementations must embed UnimplementedTestServerServer
 // for forward compatibility
@@ -117,6 +128,8 @@ type TestServerServer interface {
 	Unary(context.Context, *Message) (*Message, error)
 	StreamOut(*Message, TestServer_StreamOutServer) error
 	StreamIn(TestServer_StreamInServer) error
+	// rpc StreamInOut(stream Message) returns (stream Message);
+	UnaryFolded(context.Context, *Folded) (*Folded, error)
 	mustEmbedUnimplementedTestServerServer()
 }
 
@@ -132,6 +145,9 @@ func (UnimplementedTestServerServer) StreamOut(*Message, TestServer_StreamOutSer
 }
 func (UnimplementedTestServerServer) StreamIn(TestServer_StreamInServer) error {
 	return status.Errorf(codes.Unimplemented, "method StreamIn not implemented")
+}
+func (UnimplementedTestServerServer) UnaryFolded(context.Context, *Folded) (*Folded, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnaryFolded not implemented")
 }
 func (UnimplementedTestServerServer) mustEmbedUnimplementedTestServerServer() {}
 
@@ -211,6 +227,24 @@ func (x *testServerStreamInServer) Recv() (*Message, error) {
 	return m, nil
 }
 
+func _TestServer_UnaryFolded_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Folded)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TestServerServer).UnaryFolded(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/pb.TestServer/UnaryFolded",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TestServerServer).UnaryFolded(ctx, req.(*Folded))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TestServer_ServiceDesc is the grpc.ServiceDesc for TestServer service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -221,6 +255,10 @@ var TestServer_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Unary",
 			Handler:    _TestServer_Unary_Handler,
+		},
+		{
+			MethodName: "UnaryFolded",
+			Handler:    _TestServer_UnaryFolded_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
