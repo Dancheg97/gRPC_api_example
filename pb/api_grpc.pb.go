@@ -25,7 +25,6 @@ type TestServerClient interface {
 	Unary(ctx context.Context, in *Message, opts ...grpc.CallOption) (*Message, error)
 	StreamOut(ctx context.Context, in *Message, opts ...grpc.CallOption) (TestServer_StreamOutClient, error)
 	StreamIn(ctx context.Context, opts ...grpc.CallOption) (TestServer_StreamInClient, error)
-	StreamInOut(ctx context.Context, opts ...grpc.CallOption) (TestServer_StreamInOutClient, error)
 }
 
 type testServerClient struct {
@@ -111,37 +110,6 @@ func (x *testServerStreamInClient) CloseAndRecv() (*Message, error) {
 	return m, nil
 }
 
-func (c *testServerClient) StreamInOut(ctx context.Context, opts ...grpc.CallOption) (TestServer_StreamInOutClient, error) {
-	stream, err := c.cc.NewStream(ctx, &TestServer_ServiceDesc.Streams[2], "/pb.TestServer/StreamInOut", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &testServerStreamInOutClient{stream}
-	return x, nil
-}
-
-type TestServer_StreamInOutClient interface {
-	Send(*Message) error
-	Recv() (*Message, error)
-	grpc.ClientStream
-}
-
-type testServerStreamInOutClient struct {
-	grpc.ClientStream
-}
-
-func (x *testServerStreamInOutClient) Send(m *Message) error {
-	return x.ClientStream.SendMsg(m)
-}
-
-func (x *testServerStreamInOutClient) Recv() (*Message, error) {
-	m := new(Message)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
 // TestServerServer is the server API for TestServer service.
 // All implementations must embed UnimplementedTestServerServer
 // for forward compatibility
@@ -149,7 +117,6 @@ type TestServerServer interface {
 	Unary(context.Context, *Message) (*Message, error)
 	StreamOut(*Message, TestServer_StreamOutServer) error
 	StreamIn(TestServer_StreamInServer) error
-	StreamInOut(TestServer_StreamInOutServer) error
 	mustEmbedUnimplementedTestServerServer()
 }
 
@@ -165,9 +132,6 @@ func (UnimplementedTestServerServer) StreamOut(*Message, TestServer_StreamOutSer
 }
 func (UnimplementedTestServerServer) StreamIn(TestServer_StreamInServer) error {
 	return status.Errorf(codes.Unimplemented, "method StreamIn not implemented")
-}
-func (UnimplementedTestServerServer) StreamInOut(TestServer_StreamInOutServer) error {
-	return status.Errorf(codes.Unimplemented, "method StreamInOut not implemented")
 }
 func (UnimplementedTestServerServer) mustEmbedUnimplementedTestServerServer() {}
 
@@ -247,32 +211,6 @@ func (x *testServerStreamInServer) Recv() (*Message, error) {
 	return m, nil
 }
 
-func _TestServer_StreamInOut_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(TestServerServer).StreamInOut(&testServerStreamInOutServer{stream})
-}
-
-type TestServer_StreamInOutServer interface {
-	Send(*Message) error
-	Recv() (*Message, error)
-	grpc.ServerStream
-}
-
-type testServerStreamInOutServer struct {
-	grpc.ServerStream
-}
-
-func (x *testServerStreamInOutServer) Send(m *Message) error {
-	return x.ServerStream.SendMsg(m)
-}
-
-func (x *testServerStreamInOutServer) Recv() (*Message, error) {
-	m := new(Message)
-	if err := x.ServerStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
 // TestServer_ServiceDesc is the grpc.ServiceDesc for TestServer service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -294,12 +232,6 @@ var TestServer_ServiceDesc = grpc.ServiceDesc{
 		{
 			StreamName:    "StreamIn",
 			Handler:       _TestServer_StreamIn_Handler,
-			ClientStreams: true,
-		},
-		{
-			StreamName:    "StreamInOut",
-			Handler:       _TestServer_StreamInOut_Handler,
-			ServerStreams: true,
 			ClientStreams: true,
 		},
 	},
