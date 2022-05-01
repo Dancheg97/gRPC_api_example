@@ -1,12 +1,8 @@
 package main
 
 import (
-	"context"
-	"fmt"
-	"io"
 	"log"
 	"net"
-	"time"
 
 	"github.com/Dancheg97/gRPC_api_example/pb"
 	"google.golang.org/grpc"
@@ -18,7 +14,9 @@ func main() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 	s := grpc.NewServer()
-	pb.RegisterTestServerServer(s, &server{})
+	pb.RegisterBasicsServer(s, &server{})
+	pb.RegisterConstructionsServer(s, &server{})
+	pb.RegisterStreamsServer(s, &server{})
 	log.Printf("server listening at %v", lis.Addr())
 	if err := s.Serve(lis); err != nil {
 		panic(err)
@@ -26,42 +24,44 @@ func main() {
 }
 
 type server struct {
-	pb.UnimplementedTestServerServer
+	pb.UnimplementedBasicsServer
+	pb.UnimplementedConstructionsServer
+	pb.UnimplementedStreamsServer
 }
 
-func (s *server) Unary(ctx context.Context, in *pb.Message) (*pb.Message, error) {
-	return in, nil
-}
+// func (s *server) Unary(ctx context.Context, in *pb.Message) (*pb.Message, error) {
+// 	return in, nil
+// }
 
-func (s *server) StreamOut(in *pb.Message, stream pb.TestServer_StreamOutServer) error {
-	fmt.Println(in)
-	for i := range []int32{1, 2, 3, 4, 5, 6, 7, 8, 9} {
-		err := stream.Send(&pb.Message{
-			Message: fmt.Sprintln(`hello there`, i),
-		})
-		if err != nil {
-			fmt.Println(err)
-			return nil
-		}
-		time.Sleep(time.Second)
-	}
-	return nil
-}
+// func (s *server) StreamOut(in *pb.Message, stream pb.TestServer_StreamOutServer) error {
+// 	fmt.Println(in)
+// 	for i := range []int32{1, 2, 3, 4, 5, 6, 7, 8, 9} {
+// 		err := stream.Send(&pb.Message{
+// 			Message: fmt.Sprintln(`hello there`, i),
+// 		})
+// 		if err != nil {
+// 			fmt.Println(err)
+// 			return nil
+// 		}
+// 		time.Sleep(time.Second)
+// 	}
+// 	return nil
+// }
 
-func (s *server) StreamIn(stream pb.TestServer_StreamInServer) error {
-	count := 0
-	for {
-		mes, err := stream.Recv()
-		if err == io.EOF {
-			stream.SendAndClose(&pb.Message{
-				Message: `i recieved all your stream sweetie`,
-			})
-		}
-		if err != nil {
-			fmt.Println(err)
-			return nil
-		}
-		count += 1
-		fmt.Println(count, mes)
-	}
-}
+// func (s *server) StreamIn(stream pb.TestServer_StreamInServer) error {
+// 	count := 0
+// 	for {
+// 		mes, err := stream.Recv()
+// 		if err == io.EOF {
+// 			stream.SendAndClose(&pb.Message{
+// 				Message: `i recieved all your stream sweetie`,
+// 			})
+// 		}
+// 		if err != nil {
+// 			fmt.Println(err)
+// 			return nil
+// 		}
+// 		count += 1
+// 		fmt.Println(count, mes)
+// 	}
+// }
