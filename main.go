@@ -7,6 +7,8 @@ import (
 
 	"github.com/Dancheg97/gRPC_api_example/pb"
 	"google.golang.org/grpc"
+	"google.golang.org/protobuf/types/known/anypb"
+	"google.golang.org/protobuf/types/known/emptypb"
 )
 
 func main() {
@@ -90,6 +92,34 @@ func (s *server) BytesCall(ctx context.Context, in *pb.BytesMes) (*pb.BytesMes, 
 	return in, nil
 }
 
-// func (s *server) Unary(ctx context.Context, in *pb.Message) (*pb.Message, error) {
-// 	return in, nil
-// }
+func (s *server) EnumCall(ctx context.Context, in *pb.EnumMes) (*pb.EnumMes, error) {
+	return in, nil
+}
+
+func (s *server) AnyCall(ctx context.Context, in *anypb.Any) (*anypb.Any, error) {
+	return in, nil
+}
+
+func (s *server) EmptyCall(ctx context.Context, in *emptypb.Empty) (*emptypb.Empty, error) {
+	return in, nil
+}
+
+func (s *server) ListCall(ctx context.Context, in *pb.ListMes) (*pb.ListMes, error) {
+	return in, nil
+}
+
+func (s *server) MapCall(ctx context.Context, in *pb.MapMes) (*pb.MapMes, error) {
+	return in, nil
+}
+
+func (s *server) OneofCall(ctx context.Context, in *pb.OneofMes) (*pb.OneofMes, error) {
+	return in, nil
+}
+
+func (s *server) OptionalCall(ctx context.Context, in *pb.OptionalMes) (*pb.OptionalMes, error) {
+	return in, nil
+}
+
+func (s *server) NestedCall(ctx context.Context, in *pb.NestedMes) (*pb.NestedMes, error) {
+	return in, nil
+}
