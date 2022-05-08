@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"log"
 	"net"
 
@@ -29,39 +30,66 @@ type server struct {
 	pb.UnimplementedStreamsServer
 }
 
+func (s *server) DoubleCall(ctx context.Context, in *pb.DoubleMes) (*pb.DoubleMes, error) {
+	return in, nil
+}
+
+func (s *server) FloatCall(ctx context.Context, in *pb.FloatMes) (*pb.FloatMes, error) {
+	return in, nil
+}
+
+func (s *server) Int32Call(ctx context.Context, in *pb.Int32Mes) (*pb.Int32Mes, error) {
+	return in, nil
+}
+
+func (s *server) Int64Call(ctx context.Context, in *pb.Int64Mes) (*pb.Int64Mes, error) {
+	return in, nil
+}
+
+func (s *server) Uint32Call(ctx context.Context, in *pb.Uint32Mes) (*pb.Uint32Mes, error) {
+	return in, nil
+}
+
+func (s *server) Uint64Call(ctx context.Context, in *pb.Uint64Mes) (*pb.Uint64Mes, error) {
+	return in, nil
+}
+
+func (s *server) Sint32Call(ctx context.Context, in *pb.Sint32Mes) (*pb.Sint32Mes, error) {
+	return in, nil
+}
+
+func (s *server) Sint64Call(ctx context.Context, in *pb.Sint64Mes) (*pb.Sint64Mes, error) {
+	return in, nil
+}
+
+func (s *server) Fixed32Call(ctx context.Context, in *pb.Fixed32Mes) (*pb.Fixed32Mes, error) {
+	return in, nil
+}
+
+func (s *server) Fixed64Call(ctx context.Context, in *pb.Fixed64Mes) (*pb.Fixed64Mes, error) {
+	return in, nil
+}
+
+func (s *server) Sfixed32Call(ctx context.Context, in *pb.Sfixed32Mes) (*pb.Sfixed32Mes, error) {
+	return in, nil
+}
+
+func (s *server) Sfixed64Call(ctx context.Context, in *pb.Sfixed64Mes) (*pb.Sfixed64Mes, error) {
+	return in, nil
+}
+
+func (s *server) BoolCall(ctx context.Context, in *pb.BoolMes) (*pb.BoolMes, error) {
+	return in, nil
+}
+
+func (s *server) StringCall(ctx context.Context, in *pb.StringMes) (*pb.StringMes, error) {
+	return in, nil
+}
+
+func (s *server) BytesCall(ctx context.Context, in *pb.BytesMes) (*pb.BytesMes, error) {
+	return in, nil
+}
+
 // func (s *server) Unary(ctx context.Context, in *pb.Message) (*pb.Message, error) {
 // 	return in, nil
-// }
-
-// func (s *server) StreamOut(in *pb.Message, stream pb.TestServer_StreamOutServer) error {
-// 	fmt.Println(in)
-// 	for i := range []int32{1, 2, 3, 4, 5, 6, 7, 8, 9} {
-// 		err := stream.Send(&pb.Message{
-// 			Message: fmt.Sprintln(`hello there`, i),
-// 		})
-// 		if err != nil {
-// 			fmt.Println(err)
-// 			return nil
-// 		}
-// 		time.Sleep(time.Second)
-// 	}
-// 	return nil
-// }
-
-// func (s *server) StreamIn(stream pb.TestServer_StreamInServer) error {
-// 	count := 0
-// 	for {
-// 		mes, err := stream.Recv()
-// 		if err == io.EOF {
-// 			stream.SendAndClose(&pb.Message{
-// 				Message: `i recieved all your stream sweetie`,
-// 			})
-// 		}
-// 		if err != nil {
-// 			fmt.Println(err)
-// 			return nil
-// 		}
-// 		count += 1
-// 		fmt.Println(count, mes)
-// 	}
 // }
