@@ -1,5 +1,0 @@
-make.exe --dry-run --always-make --keep-going --print-directory
-make: Entering directory 'c:/Users/dangd/OneDrive/���������/gRPC_api_example'
-protoc --go_out=. --go-grpc_out=. api.proto
-make: Leaving directory 'c:/Users/dangd/OneDrive/���������/gRPC_api_example'
- 
