@@ -51,7 +51,7 @@ func NewBasicsClient(cc grpc.ClientConnInterface) BasicsClient {
 
 func (c *basicsClient) DoubleCall(ctx context.Context, in *DoubleMes, opts ...grpc.CallOption) (*DoubleMes, error) {
 	out := new(DoubleMes)
-	err := c.cc.Invoke(ctx, "/pb.Basics/DoubleCall", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.v1.Basics/DoubleCall", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (c *basicsClient) DoubleCall(ctx context.Context, in *DoubleMes, opts ...gr
 
 func (c *basicsClient) FloatCall(ctx context.Context, in *FloatMes, opts ...grpc.CallOption) (*FloatMes, error) {
 	out := new(FloatMes)
-	err := c.cc.Invoke(ctx, "/pb.Basics/FloatCall", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.v1.Basics/FloatCall", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -69,7 +69,7 @@ func (c *basicsClient) FloatCall(ctx context.Context, in *FloatMes, opts ...grpc
 
 func (c *basicsClient) Int32Call(ctx context.Context, in *Int32Mes, opts ...grpc.CallOption) (*Int32Mes, error) {
 	out := new(Int32Mes)
-	err := c.cc.Invoke(ctx, "/pb.Basics/Int32Call", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.v1.Basics/Int32Call", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -78,7 +78,7 @@ func (c *basicsClient) Int32Call(ctx context.Context, in *Int32Mes, opts ...grpc
 
 func (c *basicsClient) Int64Call(ctx context.Context, in *Int64Mes, opts ...grpc.CallOption) (*Int64Mes, error) {
 	out := new(Int64Mes)
-	err := c.cc.Invoke(ctx, "/pb.Basics/Int64Call", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.v1.Basics/Int64Call", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -87,7 +87,7 @@ func (c *basicsClient) Int64Call(ctx context.Context, in *Int64Mes, opts ...grpc
 
 func (c *basicsClient) Uint32Call(ctx context.Context, in *Uint32Mes, opts ...grpc.CallOption) (*Uint32Mes, error) {
 	out := new(Uint32Mes)
-	err := c.cc.Invoke(ctx, "/pb.Basics/Uint32Call", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.v1.Basics/Uint32Call", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -96,7 +96,7 @@ func (c *basicsClient) Uint32Call(ctx context.Context, in *Uint32Mes, opts ...gr
 
 func (c *basicsClient) Uint64Call(ctx context.Context, in *Uint64Mes, opts ...grpc.CallOption) (*Uint64Mes, error) {
 	out := new(Uint64Mes)
-	err := c.cc.Invoke(ctx, "/pb.Basics/Uint64Call", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.v1.Basics/Uint64Call", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -105,7 +105,7 @@ func (c *basicsClient) Uint64Call(ctx context.Context, in *Uint64Mes, opts ...gr
 
 func (c *basicsClient) Sint32Call(ctx context.Context, in *Sint32Mes, opts ...grpc.CallOption) (*Sint32Mes, error) {
 	out := new(Sint32Mes)
-	err := c.cc.Invoke(ctx, "/pb.Basics/Sint32Call", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.v1.Basics/Sint32Call", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -114,7 +114,7 @@ func (c *basicsClient) Sint32Call(ctx context.Context, in *Sint32Mes, opts ...gr
 
 func (c *basicsClient) Sint64Call(ctx context.Context, in *Sint64Mes, opts ...grpc.CallOption) (*Sint64Mes, error) {
 	out := new(Sint64Mes)
-	err := c.cc.Invoke(ctx, "/pb.Basics/Sint64Call", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.v1.Basics/Sint64Call", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -123,7 +123,7 @@ func (c *basicsClient) Sint64Call(ctx context.Context, in *Sint64Mes, opts ...gr
 
 func (c *basicsClient) Fixed32Call(ctx context.Context, in *Fixed32Mes, opts ...grpc.CallOption) (*Fixed32Mes, error) {
 	out := new(Fixed32Mes)
-	err := c.cc.Invoke(ctx, "/pb.Basics/Fixed32Call", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.v1.Basics/Fixed32Call", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -132,7 +132,7 @@ func (c *basicsClient) Fixed32Call(ctx context.Context, in *Fixed32Mes, opts ...
 
 func (c *basicsClient) Fixed64Call(ctx context.Context, in *Fixed64Mes, opts ...grpc.CallOption) (*Fixed64Mes, error) {
 	out := new(Fixed64Mes)
-	err := c.cc.Invoke(ctx, "/pb.Basics/Fixed64Call", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.v1.Basics/Fixed64Call", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -141,7 +141,7 @@ func (c *basicsClient) Fixed64Call(ctx context.Context, in *Fixed64Mes, opts ...
 
 func (c *basicsClient) Sfixed32Call(ctx context.Context, in *Sfixed32Mes, opts ...grpc.CallOption) (*Sfixed32Mes, error) {
 	out := new(Sfixed32Mes)
-	err := c.cc.Invoke(ctx, "/pb.Basics/Sfixed32Call", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.v1.Basics/Sfixed32Call", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -150,7 +150,7 @@ func (c *basicsClient) Sfixed32Call(ctx context.Context, in *Sfixed32Mes, opts .
 
 func (c *basicsClient) Sfixed64Call(ctx context.Context, in *Sfixed64Mes, opts ...grpc.CallOption) (*Sfixed64Mes, error) {
 	out := new(Sfixed64Mes)
-	err := c.cc.Invoke(ctx, "/pb.Basics/Sfixed64Call", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.v1.Basics/Sfixed64Call", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -159,7 +159,7 @@ func (c *basicsClient) Sfixed64Call(ctx context.Context, in *Sfixed64Mes, opts .
 
 func (c *basicsClient) BoolCall(ctx context.Context, in *BoolMes, opts ...grpc.CallOption) (*BoolMes, error) {
 	out := new(BoolMes)
-	err := c.cc.Invoke(ctx, "/pb.Basics/BoolCall", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.v1.Basics/BoolCall", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -168,7 +168,7 @@ func (c *basicsClient) BoolCall(ctx context.Context, in *BoolMes, opts ...grpc.C
 
 func (c *basicsClient) StringCall(ctx context.Context, in *StringMes, opts ...grpc.CallOption) (*StringMes, error) {
 	out := new(StringMes)
-	err := c.cc.Invoke(ctx, "/pb.Basics/StringCall", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.v1.Basics/StringCall", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -177,7 +177,7 @@ func (c *basicsClient) StringCall(ctx context.Context, in *StringMes, opts ...gr
 
 func (c *basicsClient) BytesCall(ctx context.Context, in *BytesMes, opts ...grpc.CallOption) (*BytesMes, error) {
 	out := new(BytesMes)
-	err := c.cc.Invoke(ctx, "/pb.Basics/BytesCall", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.v1.Basics/BytesCall", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -278,7 +278,7 @@ func _Basics_DoubleCall_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.Basics/DoubleCall",
+		FullMethod: "/pb.v1.Basics/DoubleCall",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BasicsServer).DoubleCall(ctx, req.(*DoubleMes))
@@ -296,7 +296,7 @@ func _Basics_FloatCall_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.Basics/FloatCall",
+		FullMethod: "/pb.v1.Basics/FloatCall",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BasicsServer).FloatCall(ctx, req.(*FloatMes))
@@ -314,7 +314,7 @@ func _Basics_Int32Call_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.Basics/Int32Call",
+		FullMethod: "/pb.v1.Basics/Int32Call",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BasicsServer).Int32Call(ctx, req.(*Int32Mes))
@@ -332,7 +332,7 @@ func _Basics_Int64Call_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.Basics/Int64Call",
+		FullMethod: "/pb.v1.Basics/Int64Call",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BasicsServer).Int64Call(ctx, req.(*Int64Mes))
@@ -350,7 +350,7 @@ func _Basics_Uint32Call_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.Basics/Uint32Call",
+		FullMethod: "/pb.v1.Basics/Uint32Call",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BasicsServer).Uint32Call(ctx, req.(*Uint32Mes))
@@ -368,7 +368,7 @@ func _Basics_Uint64Call_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.Basics/Uint64Call",
+		FullMethod: "/pb.v1.Basics/Uint64Call",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BasicsServer).Uint64Call(ctx, req.(*Uint64Mes))
@@ -386,7 +386,7 @@ func _Basics_Sint32Call_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.Basics/Sint32Call",
+		FullMethod: "/pb.v1.Basics/Sint32Call",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BasicsServer).Sint32Call(ctx, req.(*Sint32Mes))
@@ -404,7 +404,7 @@ func _Basics_Sint64Call_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.Basics/Sint64Call",
+		FullMethod: "/pb.v1.Basics/Sint64Call",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BasicsServer).Sint64Call(ctx, req.(*Sint64Mes))
@@ -422,7 +422,7 @@ func _Basics_Fixed32Call_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.Basics/Fixed32Call",
+		FullMethod: "/pb.v1.Basics/Fixed32Call",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BasicsServer).Fixed32Call(ctx, req.(*Fixed32Mes))
@@ -440,7 +440,7 @@ func _Basics_Fixed64Call_Handler(srv interface{}, ctx context.Context, dec func(
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.Basics/Fixed64Call",
+		FullMethod: "/pb.v1.Basics/Fixed64Call",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BasicsServer).Fixed64Call(ctx, req.(*Fixed64Mes))
@@ -458,7 +458,7 @@ func _Basics_Sfixed32Call_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.Basics/Sfixed32Call",
+		FullMethod: "/pb.v1.Basics/Sfixed32Call",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BasicsServer).Sfixed32Call(ctx, req.(*Sfixed32Mes))
@@ -476,7 +476,7 @@ func _Basics_Sfixed64Call_Handler(srv interface{}, ctx context.Context, dec func
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.Basics/Sfixed64Call",
+		FullMethod: "/pb.v1.Basics/Sfixed64Call",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BasicsServer).Sfixed64Call(ctx, req.(*Sfixed64Mes))
@@ -494,7 +494,7 @@ func _Basics_BoolCall_Handler(srv interface{}, ctx context.Context, dec func(int
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.Basics/BoolCall",
+		FullMethod: "/pb.v1.Basics/BoolCall",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BasicsServer).BoolCall(ctx, req.(*BoolMes))
@@ -512,7 +512,7 @@ func _Basics_StringCall_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.Basics/StringCall",
+		FullMethod: "/pb.v1.Basics/StringCall",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BasicsServer).StringCall(ctx, req.(*StringMes))
@@ -530,7 +530,7 @@ func _Basics_BytesCall_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.Basics/BytesCall",
+		FullMethod: "/pb.v1.Basics/BytesCall",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(BasicsServer).BytesCall(ctx, req.(*BytesMes))
@@ -542,7 +542,7 @@ func _Basics_BytesCall_Handler(srv interface{}, ctx context.Context, dec func(in
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Basics_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "pb.Basics",
+	ServiceName: "pb.v1.Basics",
 	HandlerType: (*BasicsServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -634,7 +634,7 @@ func NewConstructionsClient(cc grpc.ClientConnInterface) ConstructionsClient {
 
 func (c *constructionsClient) EnumCall(ctx context.Context, in *EnumMes, opts ...grpc.CallOption) (*EnumMes, error) {
 	out := new(EnumMes)
-	err := c.cc.Invoke(ctx, "/pb.Constructions/EnumCall", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.v1.Constructions/EnumCall", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -643,7 +643,7 @@ func (c *constructionsClient) EnumCall(ctx context.Context, in *EnumMes, opts ..
 
 func (c *constructionsClient) AnyCall(ctx context.Context, in *anypb.Any, opts ...grpc.CallOption) (*anypb.Any, error) {
 	out := new(anypb.Any)
-	err := c.cc.Invoke(ctx, "/pb.Constructions/AnyCall", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.v1.Constructions/AnyCall", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -652,7 +652,7 @@ func (c *constructionsClient) AnyCall(ctx context.Context, in *anypb.Any, opts .
 
 func (c *constructionsClient) EmptyCall(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/pb.Constructions/EmptyCall", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.v1.Constructions/EmptyCall", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -661,7 +661,7 @@ func (c *constructionsClient) EmptyCall(ctx context.Context, in *emptypb.Empty, 
 
 func (c *constructionsClient) ListCall(ctx context.Context, in *ListMes, opts ...grpc.CallOption) (*ListMes, error) {
 	out := new(ListMes)
-	err := c.cc.Invoke(ctx, "/pb.Constructions/ListCall", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.v1.Constructions/ListCall", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -670,7 +670,7 @@ func (c *constructionsClient) ListCall(ctx context.Context, in *ListMes, opts ..
 
 func (c *constructionsClient) MapCall(ctx context.Context, in *MapMes, opts ...grpc.CallOption) (*MapMes, error) {
 	out := new(MapMes)
-	err := c.cc.Invoke(ctx, "/pb.Constructions/MapCall", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.v1.Constructions/MapCall", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -679,7 +679,7 @@ func (c *constructionsClient) MapCall(ctx context.Context, in *MapMes, opts ...g
 
 func (c *constructionsClient) OneofCall(ctx context.Context, in *OneofMes, opts ...grpc.CallOption) (*OneofMes, error) {
 	out := new(OneofMes)
-	err := c.cc.Invoke(ctx, "/pb.Constructions/OneofCall", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.v1.Constructions/OneofCall", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -688,7 +688,7 @@ func (c *constructionsClient) OneofCall(ctx context.Context, in *OneofMes, opts 
 
 func (c *constructionsClient) OptionalCall(ctx context.Context, in *OptionalMes, opts ...grpc.CallOption) (*OptionalMes, error) {
 	out := new(OptionalMes)
-	err := c.cc.Invoke(ctx, "/pb.Constructions/OptionalCall", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.v1.Constructions/OptionalCall", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -697,7 +697,7 @@ func (c *constructionsClient) OptionalCall(ctx context.Context, in *OptionalMes,
 
 func (c *constructionsClient) NestedCall(ctx context.Context, in *NestedMes, opts ...grpc.CallOption) (*NestedMes, error) {
 	out := new(NestedMes)
-	err := c.cc.Invoke(ctx, "/pb.Constructions/NestedCall", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/pb.v1.Constructions/NestedCall", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -770,7 +770,7 @@ func _Constructions_EnumCall_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.Constructions/EnumCall",
+		FullMethod: "/pb.v1.Constructions/EnumCall",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ConstructionsServer).EnumCall(ctx, req.(*EnumMes))
@@ -788,7 +788,7 @@ func _Constructions_AnyCall_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.Constructions/AnyCall",
+		FullMethod: "/pb.v1.Constructions/AnyCall",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ConstructionsServer).AnyCall(ctx, req.(*anypb.Any))
@@ -806,7 +806,7 @@ func _Constructions_EmptyCall_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.Constructions/EmptyCall",
+		FullMethod: "/pb.v1.Constructions/EmptyCall",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ConstructionsServer).EmptyCall(ctx, req.(*emptypb.Empty))
@@ -824,7 +824,7 @@ func _Constructions_ListCall_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.Constructions/ListCall",
+		FullMethod: "/pb.v1.Constructions/ListCall",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ConstructionsServer).ListCall(ctx, req.(*ListMes))
@@ -842,7 +842,7 @@ func _Constructions_MapCall_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.Constructions/MapCall",
+		FullMethod: "/pb.v1.Constructions/MapCall",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ConstructionsServer).MapCall(ctx, req.(*MapMes))
@@ -860,7 +860,7 @@ func _Constructions_OneofCall_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.Constructions/OneofCall",
+		FullMethod: "/pb.v1.Constructions/OneofCall",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ConstructionsServer).OneofCall(ctx, req.(*OneofMes))
@@ -878,7 +878,7 @@ func _Constructions_OptionalCall_Handler(srv interface{}, ctx context.Context, d
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.Constructions/OptionalCall",
+		FullMethod: "/pb.v1.Constructions/OptionalCall",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ConstructionsServer).OptionalCall(ctx, req.(*OptionalMes))
@@ -896,7 +896,7 @@ func _Constructions_NestedCall_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.Constructions/NestedCall",
+		FullMethod: "/pb.v1.Constructions/NestedCall",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ConstructionsServer).NestedCall(ctx, req.(*NestedMes))
@@ -908,7 +908,7 @@ func _Constructions_NestedCall_Handler(srv interface{}, ctx context.Context, dec
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Constructions_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "pb.Constructions",
+	ServiceName: "pb.v1.Constructions",
 	HandlerType: (*ConstructionsServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -966,7 +966,7 @@ func NewStreamsClient(cc grpc.ClientConnInterface) StreamsClient {
 }
 
 func (c *streamsClient) ServerStream(ctx context.Context, in *StringMes, opts ...grpc.CallOption) (Streams_ServerStreamClient, error) {
-	stream, err := c.cc.NewStream(ctx, &Streams_ServiceDesc.Streams[0], "/pb.Streams/ServerStream", opts...)
+	stream, err := c.cc.NewStream(ctx, &Streams_ServiceDesc.Streams[0], "/pb.v1.Streams/ServerStream", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -998,7 +998,7 @@ func (x *streamsServerStreamClient) Recv() (*StringMes, error) {
 }
 
 func (c *streamsClient) ClientStream(ctx context.Context, opts ...grpc.CallOption) (Streams_ClientStreamClient, error) {
-	stream, err := c.cc.NewStream(ctx, &Streams_ServiceDesc.Streams[1], "/pb.Streams/ClientStream", opts...)
+	stream, err := c.cc.NewStream(ctx, &Streams_ServiceDesc.Streams[1], "/pb.v1.Streams/ClientStream", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1032,7 +1032,7 @@ func (x *streamsClientStreamClient) CloseAndRecv() (*StringMes, error) {
 }
 
 func (c *streamsClient) BiDirectioalStream(ctx context.Context, opts ...grpc.CallOption) (Streams_BiDirectioalStreamClient, error) {
-	stream, err := c.cc.NewStream(ctx, &Streams_ServiceDesc.Streams[2], "/pb.Streams/BiDirectioalStream", opts...)
+	stream, err := c.cc.NewStream(ctx, &Streams_ServiceDesc.Streams[2], "/pb.v1.Streams/BiDirectioalStream", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1175,7 +1175,7 @@ func (x *streamsBiDirectioalStreamServer) Recv() (*StringMes, error) {
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Streams_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "pb.Streams",
+	ServiceName: "pb.v1.Streams",
 	HandlerType: (*StreamsServer)(nil),
 	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{
