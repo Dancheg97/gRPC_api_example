@@ -34,6 +34,7 @@ type server struct {
 }
 
 func (s *server) DoubleCall(ctx context.Context, in *pb.DoubleMes) (*pb.DoubleMes, error) {
+	fmt.Println(ctx)
 	fmt.Println(in)
 	return in, nil
 }
@@ -94,6 +95,7 @@ func (s *server) Sfixed64Call(ctx context.Context, in *pb.Sfixed64Mes) (*pb.Sfix
 }
 
 func (s *server) BoolCall(ctx context.Context, in *pb.BoolMes) (*pb.BoolMes, error) {
+	fmt.Println(ctx)
 	fmt.Println(in)
 	return in, nil
 }
