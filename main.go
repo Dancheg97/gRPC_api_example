@@ -34,6 +34,9 @@ type server struct {
 }
 
 func (s *server) DoubleCall(ctx context.Context, in *pb.DoubleMes) (*pb.DoubleMes, error) {
+	fmt.Println(ctx.Value(`username`))
+	fmt.Println(ctx.Value(`password`))
+	fmt.Println(ctx)
 	fmt.Println(in)
 	return in, nil
 }
