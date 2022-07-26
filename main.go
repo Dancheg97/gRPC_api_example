@@ -8,6 +8,7 @@ import (
 
 	"github.com/Dancheg97/gRPC_api_example/pb"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/metadata"
 	"google.golang.org/protobuf/types/known/anypb"
 	"google.golang.org/protobuf/types/known/emptypb"
 )
@@ -34,8 +35,10 @@ type server struct {
 }
 
 func (s *server) DoubleCall(ctx context.Context, in *pb.DoubleMes) (*pb.DoubleMes, error) {
-	fmt.Println(ctx.Value(`username`))
-	fmt.Println(ctx.Value(`password`))
+	md, ok := metadata.FromIncomingContext(ctx)
+	if ok {
+		fmt.Println(md)
+	}
 	fmt.Println(ctx)
 	fmt.Println(in)
 	return in, nil
@@ -97,6 +100,11 @@ func (s *server) Sfixed64Call(ctx context.Context, in *pb.Sfixed64Mes) (*pb.Sfix
 }
 
 func (s *server) BoolCall(ctx context.Context, in *pb.BoolMes) (*pb.BoolMes, error) {
+	md, ok := metadata.FromIncomingContext(ctx)
+	if ok {
+		fmt.Println(md)
+	}
+	fmt.Println(ctx)
 	fmt.Println(in)
 	return in, nil
 }
