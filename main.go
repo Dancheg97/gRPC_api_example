@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net"
+	"time"
 
 	"github.com/Dancheg97/gRPC_api_example/pb"
 	"google.golang.org/grpc"
@@ -45,6 +46,7 @@ func (s *server) DoubleCall(ctx context.Context, in *pb.DoubleMes) (*pb.DoubleMe
 }
 
 func (s *server) FloatCall(ctx context.Context, in *pb.FloatMes) (*pb.FloatMes, error) {
+	time.Sleep(time.Second)
 	fmt.Println(in)
 	return in, nil
 }
